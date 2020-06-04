@@ -106,3 +106,17 @@ Your application should call `MzaaloAuth.logout()` function when the user logs o
     MzaaloAuth.logout()
 
 
+### Register Rewards Action
+This is a feature that allows the application to register an action to the Mzaalo SDK, that should credit some rewards to the user.
+
+    MzaaloRewards.registerRewardAction(MzaaloRewardsActionTypes.XXXX, eventMeta, actionListener)
+
+
+`MzaaloRewardsActionTypes` is an enum class that describes the type of action that the user has performed. The enum has following options:
+| Enum Value | Description |
+|--|--|
+| `MzaaloRewardsActionTypes.CONTENT_VIEWED` | Send this if you want to give rewards to the user for watching content |
+| `MzaaloRewardsActionTypes.CHECKED_IN` | Send this if you want to give rewards to the user for **launching the app** or **visiting some section of the app** on a daily basis |
+| `MzaaloRewardsActionTypes.SIGNED_UP` | Send this if you want to give reward to the user for signing up on your application. In this case, call this once the above mentioned login function has been successfully executed. |
+
+
