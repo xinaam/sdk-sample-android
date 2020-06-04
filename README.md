@@ -8,6 +8,7 @@ This is the official documentation for the integration of Mzaalo android SDKs in
 	 - [Requirements](#requirements)
 	 - [Configuration](#configuration)
 - [Getting Started](#getting-started)
+- [Features and Implementation](#features-and-implementation)
 
 ## Overview
 Mzaalo SDKs have two modules:
@@ -57,14 +58,51 @@ The entry point to the SDK is through the `init` function that gets called with 
 
     MzaaloRewards.init(context, "YOUR_PARTNER_CODE", initListener, MzaaloEnvironment.XXXX)
 
-Here `initListener` can be either a `MzaaloAuthInitListener` or `MzaaloRewardsInitListener` object with the following definition.
+Here `initListener` can be either a `MzaaloAuthInitListener` or `MzaaloRewardsInitListener`(depending upon the dependency included) object with the following definition.
 
     interface MzaaloRewardsInitListener{
-		//This function is called on successful initialisation of the Mzaalo SDK
-		fun onSuccess()
-
-		//This function is called when some error occurs while initializing
-		fun onError(error:String)
+	    fun onSuccess()
+	    fun onError(error:String)
     }
+
+
+
+`MzaaloEnvironment` is an enum class with the following options:
+
+ - **MzaaloEnvironment.STAGING**
+ - **MzaaloEnvironment.PRODUCTION**
+
+
+## Features and Implementation
+### Login
+Your application should call the `MzaaloAuth.login()` function as soon as the user is identified at your end.
+
+	
+
+    val userMeta=JSONObject()
+    userMeta.put(userProperty, value)
+    MzaaloAuth.login("UNIQUE_ID_OF_YOUR_USER", userMeta, loginListener)
+
+Here are the valid `userProperty` fields that can put as keys in the `userMeta` json:
+|userProperty|Description|Example|
+|--|--|--|
+|email|Email Address of the user|johndoe@example.com|
+|phone|Phone number of the user|9876543210|
+|country_code|Country code of the user's phone number|+91, +44|
+
+
+Here `loginListener` is the object interface `MzaaloAuthLoginListener` that has the following implementation:
+
+    interface MzaaloAuthLoginListener{
+	    fun onLoginSuccess(user:User)
+	    fun onError(error:String)
+    }
+
+
+
+### Logout
+Your application should call `MzaaloAuth.logout()` function when the user logs out from your application or when the user identitiy is no longer available to you.
+
+    MzaaloAuth.logout()
 
 
