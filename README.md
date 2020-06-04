@@ -84,11 +84,11 @@ Your application should call the `MzaaloAuth.login()` function as soon as the us
     MzaaloAuth.login("UNIQUE_ID_OF_YOUR_USER", userMeta, loginListener)
 
 Here are the valid `userProperty` fields that can put as keys in the `userMeta` json:
-|userProperty|Description|Example|
-|--|--|--|
-|email|Email Address of the user|johndoe@example.com|
-|phone|Phone number of the user|9876543210|
-|country_code|Country code of the user's phone number|+91, +44|
+|userProperty|Description|Data type|Example|
+|--|--|--|--|
+|email|Email Address of the user|String|johndoe@example.com|
+|phone|Phone number of the user|String|9876543210|
+|country_code|Country code of the user's phone number|String|+91, +44|
 
 
 Here `loginListener` is the object of interface `MzaaloAuthLoginListener` that has the following definition:
@@ -122,10 +122,12 @@ This is a feature that allows the application to register an action to the Mzaal
 | `MzaaloRewardsActionTypes.SIGNED_UP` | Send this if you want to give reward to the user for signing up on your application. In this case, call this once the above mentioned login function has been successfully executed. |
 
 
+
 Here are the valid `eventProperty` fields that can be put as keys in the `eventMeta` json:
-| eventProperty | MzaaloRewardsActionTypes | Description | Example |
-|--|--|--|--|
-|  |  |  |  |
+| eventProperty | MzaaloRewardsActionTypes | Description | Data type | Example |
+|--|--|--|--|--|
+| duration | `CONTENT_VIEWED` | The duration(in seconds) for which the user has watched the content | Integer | 600, (if the user watched a movie for ten minutes) |
+
 
 Here `actionListener` is the object of interface `MzaaloRewardsRegisterActionListener` that has the following definition:
 
