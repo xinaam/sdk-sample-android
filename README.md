@@ -91,7 +91,7 @@ Here are the valid `userProperty` fields that can put as keys in the `userMeta` 
 |country_code|Country code of the user's phone number|+91, +44|
 
 
-Here `loginListener` is the object interface `MzaaloAuthLoginListener` that has the following implementation:
+Here `loginListener` is the object of interface `MzaaloAuthLoginListener` that has the following definition:
 
     interface MzaaloAuthLoginListener{
 	    fun onLoginSuccess(user:User)
@@ -109,6 +109,8 @@ Your application should call `MzaaloAuth.logout()` function when the user logs o
 ### Register Rewards Action
 This is a feature that allows the application to register an action to the Mzaalo SDK, that should credit some rewards to the user.
 
+    val eventMeta=JSONObject()
+    eventMeta(eventProperty, value)
     MzaaloRewards.registerRewardAction(MzaaloRewardsActionTypes.XXXX, eventMeta, actionListener)
 
 
@@ -120,3 +122,28 @@ This is a feature that allows the application to register an action to the Mzaal
 | `MzaaloRewardsActionTypes.SIGNED_UP` | Send this if you want to give reward to the user for signing up on your application. In this case, call this once the above mentioned login function has been successfully executed. |
 
 
+Here are the valid `eventProperty` fields that can be put as keys in the `eventMeta` json:
+| eventProperty | MzaaloRewardsActionTypes | Description | Example |
+|--|--|--|--|
+|  |  |  |  |
+
+Here `actionListener` is the object of interface `MzaaloRewardsRegisterActionListener` that has the following definition:
+
+    interface MzaaloRewardsRegisterActionListener{
+	    fun onActionRegistered()
+	    fun onError(error: String)
+    }
+
+
+### Fetch Reward Balance
+Call this function if you want to fetch the balance of the user that is currently logged in.
+
+    MzaaloRewards.getBalance(balanceListener)
+
+
+Here `balanceListener` is the object of interface `MzaaloRewardsBalanceListener` that has the following definition:
+
+    interface MzaaloRewardsBalanceListener{
+	    fun onBalanceFetched(balance: Int?)
+	    fun onError(error: String)
+    }
