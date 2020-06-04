@@ -7,6 +7,7 @@ This is the official documentation for the integration of Mzaalo android SDKs in
  - [Installation](#installation)
 	 - [Requirements](#requirements)
 	 - [Configuration](#configuration)
+- [Getting Started](#getting-started)
 
 ## Overview
 Mzaalo SDKs have two modules:
@@ -46,6 +47,24 @@ Add Mzaalo's Maven url repository in `allprojects` block in your project level `
           url "https://dl.bintray.com/xfiniteio/MzaaloSDKs"
         }
       }
+    }
+
+
+
+## Getting Started
+
+The entry point to the SDK is through the `init` function that gets called with a valid partner code, a callback based Mzaalo interface object, and an identifier for the environment type(STAGING or PRODUCTION).
+
+    MzaaloRewards.init(context, "YOUR_PARTNER_CODE", initListener, MzaaloEnvironment.XXXX)
+
+Here `initListener` can be either a `MzaaloAuthInitListener` or `MzaaloRewardsInitListener` object with the following definition.
+
+    interface MzaaloRewardsInitListener{
+		//This function is called on successful initialisation of the Mzaalo SDK
+		fun onSuccess()
+
+		//This function is called when some error occurs while initializing
+		fun onError(error:String)
     }
 
 
