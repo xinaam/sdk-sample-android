@@ -126,7 +126,7 @@ This is a feature that allows the application to register an action to the Mzaal
 Here are the valid `eventProperty` fields that can be put as keys in the `eventMeta` json:
 | eventProperty | MzaaloRewardsActionTypes | Description | Data type | Example |
 |--|--|--|--|--|
-| duration | `CONTENT_VIEWED` | The duration(in seconds) for which the user has watched the content | Integer | 600, (if the user watched a movie for ten minutes) |
+| total_watch_time | `CONTENT_VIEWED` | The duration(in seconds) for which the user has watched the content | Integer | 600, (if the user watched a movie for ten minutes) |
 
 
 Here `actionListener` is the object of interface `MzaaloRewardsRegisterActionListener` that has the following definition:
