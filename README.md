@@ -33,7 +33,7 @@ Add `mzaalo-rewards` or `mzaalo-auth` to the application level `build.gradle` fi
 
     dependencies{
 	    ...
-	    implementation 'com.xfinite.mzaalo:mzaalo-xxxx:0.0.1'
+	    implementation 'com.xfinite.mzaalo:mzaalo-xxxx:0.0.2'
 	    ...
     }
 
