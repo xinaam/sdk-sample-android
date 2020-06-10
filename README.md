@@ -10,6 +10,11 @@ This is the official documentation for the integration of Mzaalo android SDKs in
 	 - [Configuration](#configuration)
 - [Getting Started](#getting-started)
 - [Features and Implementation](#features-and-implementation)
+	- [Login](#login)
+	- [Logout](#logout)
+	- [Register Rewards Action](#register-rewards-action)
+	- [Fetch Reward Balance](#fetch-reward-balance)
+- [Sequence flow](#sequence-flow)
 
 ## Overview
 Mzaalo SDKs have two modules:
@@ -153,3 +158,9 @@ Here `balanceListener` is the object of interface `MzaaloRewardsBalanceListener`
 	    fun onBalanceFetched(balance: Int?)
 	    fun onError(error: String)
     }
+
+
+## Sequence Flow
+### mzaalo-auth
+![Sequence flow diagram for authentication flow of Mzaalo SDK](https://xfinitesite.blob.core.windows.net/uploads/auth.png)
+
