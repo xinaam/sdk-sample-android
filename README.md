@@ -162,5 +162,10 @@ Here `balanceListener` is the object of interface `MzaaloRewardsBalanceListener`
 
 ## Sequence Flow
 ### mzaalo-auth
-![Sequence flow diagram for authentication flow of Mzaalo SDK](https://xfinitesite.blob.core.windows.net/uploads/auth.png)
+![Sequence flow diagram for authentication flow of Mzaalo SDK](https://xfinitesite.blob.core.windows.net/flow-diagrams/mzaalo-auth.png)
 
+
+### mzaalo-rewards
+![Register Rewards action function of the rewards module of the Mzaalo SDK](https://xfinitesite.blob.core.windows.net/flow-diagrams/mzaalo-rewards-rra.png)
+
+![Fetch rewards balance function of the rewards module of Mzaalo SDK](https://xfinitesite.blob.core.windows.net/flow-diagrams/mzaalo-rewards-frb.png)
