@@ -6,13 +6,111 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideTopHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideLeftVertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideRightVertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideCenterVertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
     <TextView
+        android:id="@+id/txtInitializeLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Initialize Mzaalo Auth"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_marginTop="50dp"
+        app:layout_constraintLeft_toLeftOf="@id/guideLeftVertical"
+        app:layout_constraintRight_toRightOf="@id/guideRightVertical"
+        app:layout_constraintTop_toTopOf="@id/guideTopHorizontal" />
+
+
+    <TextView
+        android:id="@+id/txtPartnerCodeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Partner Code"
+        android:textSize="16sp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintLeft_toLeftOf="@id/guideLeftVertical"
+        app:layout_constraintTop_toBottomOf="@+id/txtInitializeLabel" />
+
+    <EditText
+        android:id="@+id/edtPartnerCode"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:hint="Enter Partner Code"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toRightOf="@id/guideCenterVertical"
+        app:layout_constraintTop_toBottomOf="@+id/txtInitializeLabel"
+        app:layout_constraintBaseline_toBaselineOf="@+id/txtPartnerCodeLabel"/>
+
+
+    <TextView
+        android:id="@+id/txtEnvironmentLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mzaalo Environment"
+        android:textSize="16sp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintLeft_toLeftOf="@id/guideLeftVertical"
+        app:layout_constraintTop_toBottomOf="@+id/txtPartnerCodeLabel" />
+
+    <Spinner
+        android:id="@+id/spinnerEnvironment"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
+        android:entries="@array/MzaaloEnvironment"
+        app:layout_constraintLeft_toRightOf="@id/guideCenterVertical"
+        app:layout_constraintTop_toBottomOf="@+id/edtPartnerCode" />
+
+    <Button
+        android:id="@+id/btnInitialize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Initialize"
+        android:layout_marginTop="50dp"
+        app:layout_constraintLeft_toLeftOf="@id/guideLeftVertical"
+        app:layout_constraintRight_toRightOf="@id/guideRightVertical"
+        app:layout_constraintTop_toBottomOf="@id/txtEnvironmentLabel" />
+
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:gravity="center"
+        android:visibility="gone"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
