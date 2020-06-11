@@ -1,10 +1,10 @@
 package com.xfinite.mzaalosdksample
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.xfinite.mzaaloauth.MzaaloAuth
 import com.xfinite.mzaaloauth.MzaaloAuthInitListener
 import com.xfinite.mzaaloauth.MzaaloEnvironment

@@ -1,7 +1,11 @@
 package com.xfinite.mzaalosdksample
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.xfinite.mzaaloauth.MzaaloAuth
 import kotlinx.android.synthetic.main.activity_home.*
 
@@ -20,6 +24,17 @@ class HomeActivity : AppCompatActivity() {
                     "CountryCode : ${intent.extras?.getString("countryCode")} \n\n"+
                     "Gender : ${intent.extras?.getString("gender")} \n\n"+
                     "Dob : ${intent.extras?.getString("dob")} \n\n"
+
+
+            txtUserToken.text =  "Access Token : ${intent.extras?.getString("accessToken")}"
+        }
+
+        txtUserToken.setOnLongClickListener {
+            val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            val clip = ClipData.newPlainText("",intent.extras?.getString("accessToken")) // get text from edit text
+            clipboard.setPrimaryClip(clip)
+            Toast.makeText(this,"Access Token Copied",Toast.LENGTH_SHORT).show()
+            true
         }
 
         btnLogout.setOnClickListener{

@@ -1,11 +1,10 @@
 package com.xfinite.mzaalosdksample
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.xfinite.mzaaloauth.MzaaloAuth
 import com.xfinite.mzaaloauth.MzaaloAuthLoginListener
 import com.xfinite.mzaaloauth.User
@@ -20,8 +19,12 @@ class LoginActivity : AppCompatActivity(), MzaaloAuthLoginListener {
         btnLogin.setOnClickListener {
             progress.visibility = View.VISIBLE
 
-            //Add to login Mzaalo Auth
-            MzaaloAuth.login(edtUniqueId.text.toString(), JSONObject(edtUserMetadata.text.toString()),this)
+            if (edtUserMetadata.text.toString() != "") {
+                //Add to login Mzaalo Auth
+                MzaaloAuth.login(edtUniqueId.text.toString(), JSONObject(edtUserMetadata.text.toString()), this)
+            }else{
+                MzaaloAuth.login(edtUniqueId.text.toString(), JSONObject(), this)
+            }
         }
     }
 
@@ -32,9 +35,7 @@ class LoginActivity : AppCompatActivity(), MzaaloAuthLoginListener {
 
     override fun onLoginSuccess(user: User) {
         progress.visibility = View.GONE
-        Log.e("Login Info",user.toString())
         Toast.makeText(this,"Login Successful",Toast.LENGTH_SHORT).show()
-
 
         val intent = Intent(this,HomeActivity::class.java)
         intent.putExtra("firstName",user.firstName)
@@ -44,6 +45,7 @@ class LoginActivity : AppCompatActivity(), MzaaloAuthLoginListener {
         intent.putExtra("countryCode",user.countryCode)
         intent.putExtra("gender",user.gender)
         intent.putExtra("dob",user.dob)
+        intent.putExtra("accessToken",user.accessToken)
         startActivity(intent)
         finish()
     }

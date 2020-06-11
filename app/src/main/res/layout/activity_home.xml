@@ -6,25 +6,66 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideTopHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideLeftVertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideRightVertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
 
     <TextView
         android:id="@+id/txtUserInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/guideLeftVertical"
+        app:layout_constraintRight_toRightOf="@id/guideRightVertical"
+        app:layout_constraintTop_toTopOf="@id/guideTopHorizontal"
         android:layout_marginTop="50dp"/>
+
+    <TextView
+        android:id="@+id/txtUserToken"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintLeft_toLeftOf="@id/guideLeftVertical"
+        app:layout_constraintRight_toRightOf="@id/guideRightVertical"
+        app:layout_constraintTop_toBottomOf="@id/txtUserInfo" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:hint="Long click above to copy"
+        android:gravity="center"
+        app:layout_constraintLeft_toLeftOf="@id/guideLeftVertical"
+        app:layout_constraintRight_toRightOf="@id/guideRightVertical"
+        app:layout_constraintTop_toBottomOf="@id/txtUserToken" />
 
     <Button
         android:id="@+id/btnLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="60dp"
         android:text="Logout"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtUserInfo" />
+        app:layout_constraintLeft_toLeftOf="@id/guideLeftVertical"
+        app:layout_constraintRight_toRightOf="@id/guideRightVertical"
+        app:layout_constraintTop_toBottomOf="@id/txtUserToken" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
