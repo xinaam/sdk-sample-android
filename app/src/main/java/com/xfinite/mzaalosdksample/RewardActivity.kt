@@ -50,11 +50,13 @@ class RewardActivity : AppCompatActivity(){
 
         btnFetchBalance.setOnClickListener {
             progress.visibility = View.VISIBLE
+            txtRewardBalance.visibility = View.GONE
 
             //Add to Fetch Reward Balance
             MzaaloRewards.getBalance(object :MzaaloRewardsBalanceListener{
                 override fun onBalanceFetched(balance: Int?) {
                     progress.visibility = View.GONE
+                    txtRewardBalance.visibility = View.VISIBLE
                     txtRewardBalance.setText("Balance : $balance")
                 }
 
