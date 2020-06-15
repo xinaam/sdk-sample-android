@@ -20,28 +20,36 @@ class MainActivity : AppCompatActivity(), MzaaloAuthInitListener {
             progress.visibility = View.VISIBLE
 
             //Add to initialize Mzaalo Auth
-            MzaaloAuth.init(this, edtPartnerCode.text.toString(), this,getSelectedEnvironment())
+            MzaaloAuth.init(this, edtPartnerCode.text.toString(), this, getSelectedEnvironment())
         }
     }
 
-    private fun getSelectedEnvironment():MzaaloEnvironment{
-        return if (spinnerEnvironment.selectedItem.toString() == "STAGING") {
-            MzaaloEnvironment.STAGING
-        }else {
-            MzaaloEnvironment.PRODUCTION
+    private fun getSelectedEnvironment(): MzaaloEnvironment {
+        return when (spinnerEnvironment.selectedItem.toString()) {
+            MzaaloEnvironment.STAGING.name -> {
+                MzaaloEnvironment.STAGING
+            }
+
+            MzaaloEnvironment.PRODUCTION.name -> {
+                MzaaloEnvironment.PRODUCTION
+            }
+
+            else -> {
+                MzaaloEnvironment.STAGING
+            }
         }
     }
 
     override fun onError(error: String) {
         progress.visibility = View.GONE
-        Toast.makeText(this,"Initialization failed : $error",Toast.LENGTH_SHORT).show()
+        Toast.makeText(this,  error, Toast.LENGTH_SHORT).show()
     }
 
     override fun onSuccess() {
         progress.visibility = View.GONE
-        Toast.makeText(this,"Initialization Successful",Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
 
-        val intent = Intent(this,LoginActivity::class.java)
+        val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
     }
 }
