@@ -2,6 +2,7 @@ package com.xfinite.mzaalosdksample
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +10,7 @@ import com.xfinite.mzaaloauth.MzaaloAuth
 import com.xfinite.mzaaloauth.MzaaloAuthLoginListener
 import com.xfinite.mzaaloauth.User
 import kotlinx.android.synthetic.main.activity_login.*
+import org.json.JSONException
 import org.json.JSONObject
 
 class LoginActivity : AppCompatActivity(), MzaaloAuthLoginListener {
@@ -19,11 +21,21 @@ class LoginActivity : AppCompatActivity(), MzaaloAuthLoginListener {
         btnLogin.setOnClickListener {
             progress.visibility = View.VISIBLE
 
-            if (edtUserMetadata.text.toString() != "") {
-                //Add to login Mzaalo Auth
-                MzaaloAuth.login(edtUniqueId.text.toString(), JSONObject(edtUserMetadata.text.toString()), this)
-            }else{
-                MzaaloAuth.login(edtUniqueId.text.toString(), JSONObject(), this)
+            try {
+                if (edtUserMetadata.text.toString() != "") {
+                    //Add to login Mzaalo Auth
+                    MzaaloAuth.login(
+                        edtUniqueId.text.toString(),
+                        JSONObject(edtUserMetadata.text.toString()),
+                        this
+                    )
+                } else {
+                    MzaaloAuth.login(edtUniqueId.text.toString(), JSONObject(), this)
+                }
+            }catch (e:Exception)
+            {
+                Toast.makeText(this,"Provide Valid JSONObject",Toast.LENGTH_SHORT).show()
+                progress.visibility = View.GONE
             }
         }
     }
