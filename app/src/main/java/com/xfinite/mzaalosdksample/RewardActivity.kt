@@ -10,6 +10,7 @@ import com.xfinite.mzaalorewards.MzaaloRewardsBalanceListener
 import com.xfinite.mzaalorewards.MzaaloRewardsRegisterActionListener
 import kotlinx.android.synthetic.main.activity_reward.*
 import org.json.JSONObject
+import java.lang.Exception
 
 class RewardActivity : AppCompatActivity(){
 
@@ -20,31 +21,43 @@ class RewardActivity : AppCompatActivity(){
         btnRegister.setOnClickListener {
             progress.visibility = View.VISIBLE
 
-            if (edtUserMetadata.text.toString() != "") {
-                //Add to Register Rewards Action
-                MzaaloRewards.registerRewardAction(getSelectedRewardActionType(), JSONObject(edtUserMetadata.text.toString()), object :MzaaloRewardsRegisterActionListener{
-                    override fun onActionRegistered() {
-                        progress.visibility = View.GONE
-                        Toast.makeText(this@RewardActivity,"Registration Success",Toast.LENGTH_SHORT).show()
-                    }
+            try {
+                if (edtUserMetadata.text.toString() != "") {
+                    //Add to Register Rewards Action
+                    MzaaloRewards.registerRewardAction(
+                        getSelectedRewardActionType(),
+                        JSONObject(edtUserMetadata.text.toString()),
+                        object : MzaaloRewardsRegisterActionListener {
+                            override fun onActionRegistered() {
+                                progress.visibility = View.GONE
+                                Toast.makeText(this@RewardActivity, "Registration Success", Toast.LENGTH_SHORT).show()
+                            }
 
-                    override fun onError(error: String) {
-                        progress.visibility = View.GONE
-                        Toast.makeText(this@RewardActivity,"Registration failed : $error",Toast.LENGTH_SHORT).show()
-                    }
-                })
-            }else{
-                MzaaloRewards.registerRewardAction(getSelectedRewardActionType(), JSONObject(), object :MzaaloRewardsRegisterActionListener{
-                    override fun onActionRegistered() {
-                        progress.visibility = View.GONE
-                        Toast.makeText(this@RewardActivity,"Registration Success",Toast.LENGTH_SHORT).show()
-                    }
+                            override fun onError(error: String) {
+                                progress.visibility = View.GONE
+                                Toast.makeText(this@RewardActivity, "Registration failed : $error", Toast.LENGTH_SHORT).show()
+                            }
+                        })
+                } else {
+                    MzaaloRewards.registerRewardAction(
+                        getSelectedRewardActionType(),
+                        JSONObject(),
+                        object : MzaaloRewardsRegisterActionListener {
+                            override fun onActionRegistered() {
+                                progress.visibility = View.GONE
+                                Toast.makeText(this@RewardActivity, "Registration Success", Toast.LENGTH_SHORT).show()
+                            }
 
-                    override fun onError(error: String) {
-                        progress.visibility = View.GONE
-                        Toast.makeText(this@RewardActivity,"Registration failed : $error",Toast.LENGTH_SHORT).show()
-                    }
-                })
+                            override fun onError(error: String) {
+                                progress.visibility = View.GONE
+                                Toast.makeText(this@RewardActivity, "Registration failed : $error", Toast.LENGTH_SHORT).show()
+                            }
+                        })
+                }
+            }catch (e:Exception)
+            {
+                Toast.makeText(this,"Provide Valid JSONObject",Toast.LENGTH_SHORT).show()
+                progress.visibility = View.GONE
             }
         }
 

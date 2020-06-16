@@ -19,11 +19,17 @@ class LoginActivity : AppCompatActivity(), MzaaloAuthLoginListener {
         btnLogin.setOnClickListener {
             progress.visibility = View.VISIBLE
 
-            if (edtUserMetadata.text.toString() != "") {
-                //Add to login Mzaalo Auth
-                MzaaloAuth.login(edtUniqueId.text.toString(), JSONObject(edtUserMetadata.text.toString()), this)
-            }else{
-                MzaaloAuth.login(edtUniqueId.text.toString(), JSONObject(), this)
+            try {
+                if (edtUserMetadata.text.toString() != "") {
+                    //Add to login Mzaalo Auth
+                    MzaaloAuth.login(edtUniqueId.text.toString(), JSONObject(edtUserMetadata.text.toString()), this)
+                } else {
+                    MzaaloAuth.login(edtUniqueId.text.toString(), JSONObject(), this)
+                }
+            }catch (e:Exception)
+            {
+                Toast.makeText(this,"Provide Valid JSONObject",Toast.LENGTH_SHORT).show()
+                progress.visibility = View.GONE
             }
         }
     }
