@@ -24,11 +24,8 @@ class LoginActivity : AppCompatActivity(), MzaaloAuthLoginListener {
             try {
                 if (edtUserMetadata.text.toString() != "") {
                     //Add to login Mzaalo Auth
-                    MzaaloAuth.login(
-                        edtUniqueId.text.toString(),
-                        JSONObject(edtUserMetadata.text.toString()),
-                        this
-                    )
+                    MzaaloAuth.login(edtUniqueId.text.toString(), JSONObject(edtUserMetadata.text.toString()), this)
+
                 } else {
                     MzaaloAuth.login(edtUniqueId.text.toString(), JSONObject(), this)
                 }

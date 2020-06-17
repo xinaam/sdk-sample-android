@@ -35,7 +35,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-    // Add Implementation of mzaalo-auth
-    implementation 'com.xfinite.mzaalo:mzaalo-auth:0.0.2'
+    // Add Implementation of mzaalo-rewards
+    implementation 'com.xfinite.mzaalo:mzaalo-rewards:0.0.2'
 
 }

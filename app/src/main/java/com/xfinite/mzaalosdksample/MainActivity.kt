@@ -5,12 +5,12 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.xfinite.mzaaloauth.MzaaloAuth
-import com.xfinite.mzaaloauth.MzaaloAuthInitListener
 import com.xfinite.mzaaloauth.MzaaloEnvironment
+import com.xfinite.mzaalorewards.MzaaloRewards
+import com.xfinite.mzaalorewards.MzaaloRewardsInitListener
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), MzaaloAuthInitListener {
+class MainActivity : AppCompatActivity(), MzaaloRewardsInitListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,8 +19,9 @@ class MainActivity : AppCompatActivity(), MzaaloAuthInitListener {
         btnInitialize.setOnClickListener {
             progress.visibility = View.VISIBLE
 
-            //Add to initialize Mzaalo Auth
-            MzaaloAuth.init(this, edtPartnerCode.text.toString(), this, getSelectedEnvironment())
+            //Add to initialize Mzaalo Rewards
+            MzaaloRewards.init(this, edtPartnerCode.text.toString(), this,getSelectedEnvironment())
+
         }
     }
 
