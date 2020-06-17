@@ -60,7 +60,7 @@ Add Mzaalo's Maven url repository in `allprojects` block in your project level `
 
 ## Getting Started
 
-The entry point to the SDK is through the `init` function that gets called with a valid partner code, a callback based Mzaalo interface object, and an identifier for the environment type(STAGING or PRODUCTION).
+The entry point to the SDK is through the `init` function that gets called with a valid partner code, a callback based Mzaalo interface object, and an identifier for the environment type(STAGING or PRODUCTION). Call this function in the `onCreate` function of your Application class.
 
     MzaaloRewards.init(context, "YOUR_PARTNER_CODE", initListener, MzaaloEnvironment.XXXX)
 
