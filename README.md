@@ -18,6 +18,9 @@ This is the official documentation for the integration of Mzaalo android SDKs in
 		- [Register Rewards Action](#register-rewards-action)
 		- [Fetch Reward Balance](#fetch-reward-balance)
 	- [player](#player)
+		- [Initialization](#initialization)
+		- [Playback Controls](#playback-controls)
+		- [Cleanup](#cleanup)
 - [Sequence flow](#sequence-flow)
 
 ## Overview
@@ -170,6 +173,82 @@ Here `balanceListener` is the object of interface `MzaaloRewardsBalanceListener`
 
 
 ### player
+
+#### Initialization
+Include the Mzaalo's `PlayerView` into the layout file of your activity/fragment.
+
+    <com.xfinite.mzaaloplayer.views.PlayerView  
+        android:layout_height="wrap_content"  
+        android:layout_width="match_parent"  
+        app:layout_constraintLeft_toLeftOf="parent"  
+        app:layout_constraintRight_toRightOf="parent"  
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+<br/>
+Declare a variable of `MZVideoPlayer` in your class.
+
+    ...
+    private lateinit var mzaaloPlayer: MZVideoPlayer
+    ...
+<br/>
+Now create the `MZVideoPlayer` object using `MzaaloPlayer` top-level class, preferrably in your Activity/Fragment's `onCreate` method, and then initialize it.
+
+    mzaaloPlayer=MzaaloPlayer.createVideoPlayer(context)
+    mzaaloPlayer.initialize("CONTENT_ID_THAT_YOU_WANT_TO_PLAY", MzaaloPlayerContentTypes.XXXX, playerInitListener)
+ Here `playerInitListener` is the object of the interface `MZVideoPlayerInitListener` that has the following definition:
+ 
+
+    interface MZVideoPlayerInitListener {  
+	    fun onReadyToStart()  
+	    fun onError(error:String)  
+    }
+
+`MzaaloPlayerContentTypes` is an enum class with the following options:
+
+ - **MzaaloPlayerContentTypes.EPISODE**
+ - **MzaaloPlayerContentTypes.MOVIE**
+
+The `initialize` function makes the streaming setup ready to start asynchronously and the callback `onReadyToStart` is fired once the setup is done to play a particular video. At this point, you should call the `start` function on your `mzaaloPlayer` object to start the video playing.
+
+    override fun onReadyToStart(){
+	    mzaaloPlayer.start()
+    }
+After this, your video will start playing.
+
+#### Playback Controls
+Following are some common playback control functions that you can invoke to handle the controls of the player.
+
+ - `fun pause()`
+	 This allows you to pause the video playback
+	 
+ - `fun resume()`
+	 This allows you to resume the already paused video playback
+	 
+ - `fun seekTo(pos:Long)`
+	 You can seek to any particular position by passing the `pos` parameter in milliseconds.
+ - `fun getDuration():Long`
+	 This returns the total duration(in milliseconds) of the current video that is loaded on the player.
+ - `fun getCurrentPosition():Long`
+	 This returns the current cursor position(in milliseconds) of the video playback.
+ - `fun setPlaybackControllerCallback{}`
+	 This allows to set a callback based on the states of the player at different times. This function accepts a lambda function that is passed `PlaybackControllerState` object as an argument to the function. This lambda function is called whenever the state of the player changes. `PlaybackControllerState` is an enum class with the following options representing the corresponding player states:
+	 - `PlaybackControllerState.STATE_BUFFERING`
+	 - `PlaybackControllerState.STATE_IDLE`
+	 - `PlaybackControllerState.STATE_ENDED`
+	 - `PlaybackControllerState.STATE_READY`
+	 - `PlaybackControllerState.STATE_PREPARED`
+	
+	
+#### Cleanup
+Finally in your Activity/Fragment's onStop method, call the `clean` function of the `MZVideoPlayer` class to free up the resources:
+
+    override fun onStop() {  
+	    mzaaloPlayer.clean()  
+	    super.onStop()  
+	}
+	
+<br/>
 
 ## Sequence Flow
 ### mzaalo-auth
