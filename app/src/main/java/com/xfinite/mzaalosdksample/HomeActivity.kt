@@ -49,5 +49,9 @@ class HomeActivity : AppCompatActivity() {
             val intent = Intent(this,RewardActivity::class.java)
             startActivity(intent)
         }
+
+        btnPlayer.setOnClickListener{
+            startActivity(Intent(this, VideoPlayerActivity::class.java))
+        }
     }
 }

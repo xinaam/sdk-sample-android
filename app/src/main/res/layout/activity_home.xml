@@ -76,7 +76,14 @@
         android:layout_marginBottom="50dp"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="@id/guideLeftVertical"
-        app:layout_constraintRight_toRightOf="@id/guideRightVertical"
         app:layout_constraintBottom_toBottomOf="parent" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go to player"
+        android:id="@+id/btnPlayer"
+        app:layout_constraintBottom_toBottomOf="@id/btnRewards"
+        app:layout_constraintRight_toRightOf="@id/guideRightVertical"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

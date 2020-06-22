@@ -6,11 +6,13 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.xfinite.mzaaloauth.MzaaloEnvironment
+import com.xfinite.mzaaloplayer.MzaaloPlayer
+import com.xfinite.mzaaloplayer.MzaaloPlayerInitListener
 import com.xfinite.mzaalorewards.MzaaloRewards
 import com.xfinite.mzaalorewards.MzaaloRewardsInitListener
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), MzaaloRewardsInitListener {
+class MainActivity : AppCompatActivity(), MzaaloPlayerInitListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +22,7 @@ class MainActivity : AppCompatActivity(), MzaaloRewardsInitListener {
             progress.visibility = View.VISIBLE
 
             //Add to initialize Mzaalo Rewards
-            MzaaloRewards.init(this, edtPartnerCode.text.toString(), this,getSelectedEnvironment())
+            MzaaloPlayer.init(this, edtPartnerCode.text.toString(), this,getSelectedEnvironment())
 
         }
     }
