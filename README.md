@@ -1,4 +1,5 @@
 
+
 # Mzaalo Android SDK
 This is the official documentation for the integration of Mzaalo android SDKs in any android application with a valid partner code.
 
@@ -10,20 +11,27 @@ This is the official documentation for the integration of Mzaalo android SDKs in
 	 - [Configuration](#configuration)
 - [Getting Started](#getting-started)
 - [Features and Implementation](#features-and-implementation)
-	- [Login](#login)
-	- [Logout](#logout)
-	- [Register Rewards Action](#register-rewards-action)
-	- [Fetch Reward Balance](#fetch-reward-balance)
+	- [auth](#auth)
+		- [Login](#login)
+		- [Logout](#logout)
+	- [rewards](#rewards)
+		- [Register Rewards Action](#register-rewards-action)
+		- [Fetch Reward Balance](#fetch-reward-balance)
+	- [player](#player)
 - [Sequence flow](#sequence-flow)
 
 ## Overview
-Mzaalo SDKs have two modules:
+Mzaalo SDKs have three modules:
 
  1. **mzaalo-auth** : This module contains authentication features like login, logout, etc.
  2. **mzaalo-rewards** : This module contains all the authentication features, plus features of rewards like adding rewards, fetching balance, etc.
+ 3. **mzaalo-player**: This module contains all the rewards and auth features, plus a video player inbuild video with a high level implementation of playback controls
 
-Both these modules are shippable as separate gradle/maven dependencies.
-Structurally, `mzaalo-auth` is the subset of `mzaalo-rewards`. This means, any application that includes the dependency for `mzaalo-rewards` automatically gets the functionality for `mzaalo-auth` out of the box.
+All these modules are shippable as separate gradle/maven dependencies.
+Structurally, `mzaalo-auth` is the subset of `mzaalo-rewards` and `mzaalo-rewards` is the subset of `mzaalo-player`. This means, any application that includes the dependency for `mzaalo-rewards` automatically gets the functionality for `mzaalo-auth` out of the box. Also, any application that includes the dependency of `mzaalo-player` automatically gets the functionality for `mzaalo-auth` and `mzaalo-rewards` out of the box.
+
+Following is the pictorial representation of the dependencies and their subsets:
+![Dependency of modules](https://xfinitesite.blob.core.windows.net/flow-diagrams/venn-sdk-mobile.png)
 
     
 ## Installation
@@ -34,15 +42,15 @@ Structurally, `mzaalo-auth` is the subset of `mzaalo-rewards`. This means, any a
  - [AndroidX](https://developer.android.com/jetpack/androidx/)
 
 ### Configuration
-Add `mzaalo-rewards` or `mzaalo-auth` to the application level `build.gradle` file:
+Add `mzaalo-player` or `mzaalo-rewards` or `mzaalo-auth` to the application level `build.gradle` file:
 
     dependencies{
 	    ...
-	    implementation 'com.xfinite.mzaalo:mzaalo-xxxx:0.0.2'
+	    implementation 'com.xfinite.mzaalo:mzaalo-xxxx:0.0.4'
 	    ...
     }
 
-where, **`xxxx`** can be `auth` or `rewards`
+where, **`xxxx`** can be `auth` or `rewards` or `player`
 
 Add Mzaalo's Maven url repository in `allprojects` block in your project level `build.gradle` file:
 
@@ -62,11 +70,11 @@ Add Mzaalo's Maven url repository in `allprojects` block in your project level `
 
 The entry point to the SDK is through the `init` function that gets called with a valid partner code, a callback based Mzaalo interface object, and an identifier for the environment type(STAGING or PRODUCTION). Call this function in the `onCreate` function of your Application class.
 
-    MzaaloRewards.init(context, "YOUR_PARTNER_CODE", initListener, MzaaloEnvironment.XXXX)
+    MzaaloPlayer.init(context, "YOUR_PARTNER_CODE", initListener, MzaaloEnvironment.XXXX)
 
-Here `initListener` can be either a `MzaaloAuthInitListener` or `MzaaloRewardsInitListener`(depending upon the dependency included) object with the following definition.
+Here `initListener` can be either a `MzaaloAuthInitListener` or `MzaaloRewardsInitListener` or `MzaaloPlayerInitListener`(depending upon the dependency included) object with the following definition.
 
-    interface MzaaloRewardsInitListener{
+    interface MzaaloPlayerInitListener{
 	    fun onSuccess()
 	    fun onError(error:String)
     }
@@ -80,7 +88,8 @@ Here `initListener` can be either a `MzaaloAuthInitListener` or `MzaaloRewardsIn
 
 
 ## Features and Implementation
-### Login
+### auth
+#### Login
 Your application should call the `MzaaloAuth.login()` function as soon as the user is identified at your end.
 
 	
@@ -106,13 +115,13 @@ Here `loginListener` is the object of interface `MzaaloAuthLoginListener` that h
 
 
 
-### Logout
+#### Logout
 Your application should call `MzaaloAuth.logout()` function when the user logs out from your application or when the user identitiy is no longer available to you.
 
     MzaaloAuth.logout()
 
-
-### Register Rewards Action
+### rewards
+#### Register Rewards Action
 This is a feature that allows the application to register an action to the Mzaalo SDK, that should credit some rewards to the user.
 
     val eventMeta=JSONObject()
@@ -146,7 +155,7 @@ Here `actionListener` is the object of interface `MzaaloRewardsRegisterActionLis
     }
 
 
-### Fetch Reward Balance
+#### Fetch Reward Balance
 Call this function if you want to fetch the balance of the user that is currently logged in.
 
     MzaaloRewards.getBalance(balanceListener)
@@ -159,6 +168,8 @@ Here `balanceListener` is the object of interface `MzaaloRewardsBalanceListener`
 	    fun onError(error: String)
     }
 
+
+### player
 
 ## Sequence Flow
 ### mzaalo-auth
