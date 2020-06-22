@@ -184,14 +184,15 @@ Include the Mzaalo's `PlayerView` into the layout file of your activity/fragment
         app:layout_constraintRight_toRightOf="parent"  
         app:layout_constraintTop_toTopOf="parent"/>
 
-
 <br/>
+
 Declare a variable of `MZVideoPlayer` in your class.
 
     ...
     private lateinit var mzaaloPlayer: MZVideoPlayer
     ...
 <br/>
+
 Now create the `MZVideoPlayer` object using `MzaaloPlayer` top-level class, preferrably in your Activity/Fragment's `onCreate` method, and then initialize it.
 
     mzaaloPlayer=MzaaloPlayer.createVideoPlayer(context)
