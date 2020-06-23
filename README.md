@@ -101,7 +101,7 @@ Your application should call the `MzaaloAuth.login()` function as soon as the us
     userMeta.put(userProperty, value)
     MzaaloAuth.login("UNIQUE_ID_OF_YOUR_USER", userMeta, loginListener)
 
-Here are the valid `userProperty` fields that can put as keys in the `userMeta` json:
+Here are the valid `userProperty` fields that can put as keys in the `userMeta` json. A field can be mandatory or optional depending upon the partner configuration in the system. 
 |userProperty|Description|Data type|Example|
 |--|--|--|--|
 |email|Email Address of the user|String|johndoe@example.com|
