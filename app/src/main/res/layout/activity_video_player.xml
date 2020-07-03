@@ -4,13 +4,139 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".VideoPlayerActivity">
+    tools:context=".VideoPlayerActivity"
+    android:padding="5dp">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:hint="contentId"
+        android:text="55ca20b0-147f-4c1f-80b0-0e7060464360"
+        android:id="@+id/contentId"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="initialize"
+        android:onClick="initialize"
+        android:id="@+id/btnInitialise"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/contentId" />
 
     <com.xfinite.mzaaloplayer.views.PlayerView
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/btnInitialise"
+        android:id="@+id/mzPlayer"/>
+
+    <androidx.core.widget.ContentLoadingProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="?android:attr/progressBarStyleSmall"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/progressBar"
+        android:visibility="gone"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/mzPlayer"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pause"
+                android:id="@+id/btnPause"
+                android:onClick="pause"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/btnResume"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Resume"
+                android:onClick="resume"
+                android:id="@+id/btnResume"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/btnPause"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/seekPos"
+                app:layout_constraintTop_toBottomOf="@id/btnPause"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/btnSeekTo"
+                android:autofillHints="pos"
+                android:layout_marginTop="10dp"
+                android:hint="pos"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="seekTo"
+                android:id="@+id/btnSeekTo"
+                android:onClick="seekTo"
+                app:layout_constraintBottom_toBottomOf="@id/seekPos"
+                app:layout_constraintRight_toRightOf="parent"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnGetDuration"
+                app:layout_constraintTop_toBottomOf="@id/seekPos"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:text="getDuration"
+                app:layout_constraintRight_toLeftOf="@id/btnGetCurrentPosition"
+                android:onClick="getDuration"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnGetCurrentPosition"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/btnGetDuration"
+                app:layout_constraintLeft_toRightOf="@id/btnGetDuration"
+                android:text="getCurrentPosition"
+                android:onClick="getCurrentPosition"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Output here"
+                android:id="@+id/output"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/currentState"
+                android:text="Last state captured: "
+                app:layout_constraintBottom_toTopOf="@id/output"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnGetCurrentPosition"
+                app:layout_constraintRight_toRightOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
