@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">MzaaloSDKSample</string>
+
+    <string-array name="MzaaloEnvironment">
+        <item>STAGING</item>
+        <item>PRODUCTION</item>
+    </string-array>
+
+    <string-array name="MzaaloRewardsActionTypes">
+        <item>CONTENT_VIEWED</item>
+        <item>CHECKED_IN</item>
+        <item>SIGNED_UP</item>
+        <item>REFERRAL_APPLIED</item>
+    </string-array>
 </resources>

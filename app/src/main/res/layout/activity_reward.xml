@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RewardActivity">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideTopHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideLeftVertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideRightVertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideCenterVertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideCenterHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideBottomHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.95" />
+
+
+    <TextView
+        android:id="@+id/txtRegisterLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register Rewards Action"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="@id/guideLeftVertical"
+        app:layout_constraintRight_toRightOf="@id/guideRightVertical"
+        app:layout_constraintTop_toTopOf="@id/guideTopHorizontal" />
+
+
+    <TextView
+        android:id="@+id/txtRewardActionTypeLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Mzaalo Rewards Action Types"
+        android:textSize="16sp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintLeft_toLeftOf="@id/guideLeftVertical"
+        app:layout_constraintRight_toLeftOf="@id/guideCenterVertical"
+        app:layout_constraintTop_toBottomOf="@+id/txtRegisterLabel" />
+
+    <Spinner
+        android:id="@+id/spinnerRewardActionType"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:entries="@array/MzaaloRewardsActionTypes"
+        app:layout_constraintLeft_toRightOf="@id/guideCenterVertical"
+        app:layout_constraintTop_toBottomOf="@+id/edtUserMetadata"
+        app:layout_constraintBaseline_toBaselineOf="@id/txtRewardActionTypeLabel"/>
+
+    <TextView
+        android:id="@+id/txtUserMetaLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EventMeta"
+        android:textSize="16sp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintLeft_toLeftOf="@id/guideLeftVertical"
+        app:layout_constraintTop_toBottomOf="@+id/txtRewardActionTypeLabel" />
+
+    <EditText
+        android:id="@+id/edtUserMetadata"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="28dp"
+        android:background="@android:color/transparent"
+        android:hint="Enter JSONObject of EventMeta "
+        android:inputType="textMultiLine|textCapSentences"
+        android:lines="10"
+        android:maxLines="10"
+        android:minLines="3"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toRightOf="@id/guideCenterVertical"
+        app:layout_constraintRight_toRightOf="@id/guideRightVertical"
+        app:layout_constraintBaseline_toBaselineOf="@id/txtUserMetaLabel"/>
+
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:layout_marginTop="50dp"
+        app:layout_constraintLeft_toLeftOf="@id/guideLeftVertical"
+        app:layout_constraintRight_toRightOf="@id/guideRightVertical"
+        app:layout_constraintTop_toBottomOf="@id/txtUserMetaLabel" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="#000000"
+        app:layout_constraintLeft_toLeftOf="@id/guideLeftVertical"
+        app:layout_constraintRight_toRightOf="@id/guideRightVertical"
+        app:layout_constraintTop_toTopOf="@id/guideCenterHorizontal" />
+
+    <TextView
+        android:id="@+id/txtFetchBalanceLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fetch Reward Balance"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="@id/guideLeftVertical"
+        app:layout_constraintRight_toRightOf="@id/guideRightVertical"
+        app:layout_constraintTop_toTopOf="@id/guideCenterHorizontal" />
+
+    <Button
+        android:id="@+id/btnFetchBalance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fetch Balance"
+        android:layout_marginTop="50dp"
+        app:layout_constraintLeft_toLeftOf="@id/guideLeftVertical"
+        app:layout_constraintRight_toRightOf="@id/guideRightVertical"
+        app:layout_constraintTop_toBottomOf="@id/txtFetchBalanceLabel" />
+
+    <TextView
+        android:id="@+id/txtRewardBalance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:visibility="gone"
+        android:layout_marginTop="50dp"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintLeft_toLeftOf="@id/guideLeftVertical"
+        app:layout_constraintRight_toRightOf="@id/guideRightVertical"
+        app:layout_constraintTop_toBottomOf="@+id/btnFetchBalance" />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:gravity="center"
+        android:visibility="gone"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

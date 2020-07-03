@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".LoginActivity">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideTopHorizontal"
@@ -35,10 +35,10 @@
         app:layout_constraintGuide_percent="0.5" />
 
     <TextView
-        android:id="@+id/txtInitializeLabel"
+        android:id="@+id/txtLoginLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Initialize Mzaalo SDK"
+        android:text="Login Mzaalo Auth"
         android:textSize="22sp"
         android:textStyle="bold"
         android:layout_marginTop="50dp"
@@ -48,59 +48,69 @@
 
 
     <TextView
-        android:id="@+id/txtPartnerCodeLabel"
+        android:id="@+id/txtUniqueIdLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Partner Code"
+        android:text="Unique Id"
         android:textSize="16sp"
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="50dp"
         app:layout_constraintLeft_toLeftOf="@id/guideLeftVertical"
-        app:layout_constraintTop_toBottomOf="@+id/txtInitializeLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/txtLoginLabel" />
 
     <EditText
-        android:id="@+id/edtPartnerCode"
+        android:id="@+id/edtUniqueId"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:hint="Enter Partner Code"
-        android:text="eros"
+        android:hint="Enter Unique Id"
+        android:text="123"
         android:textSize="16sp"
         app:layout_constraintLeft_toRightOf="@id/guideCenterVertical"
-        app:layout_constraintTop_toBottomOf="@+id/txtInitializeLabel"
-        app:layout_constraintBaseline_toBaselineOf="@+id/txtPartnerCodeLabel"/>
+        app:layout_constraintTop_toBottomOf="@+id/txtLoginLabel"
+        app:layout_constraintBaseline_toBaselineOf="@+id/txtUniqueIdLabel"/>
 
 
     <TextView
-        android:id="@+id/txtEnvironmentLabel"
+        android:id="@+id/txtUserMetaLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Mzaalo Environment"
+        android:text="UserMeta"
         android:textSize="16sp"
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="50dp"
         app:layout_constraintLeft_toLeftOf="@id/guideLeftVertical"
-        app:layout_constraintTop_toBottomOf="@+id/txtPartnerCodeLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/txtUniqueIdLabel" />
 
-    <Spinner
-        android:id="@+id/spinnerEnvironment"
-        android:layout_width="150dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="30dp"
-        android:entries="@array/MzaaloEnvironment"
+
+    <EditText
+        android:id="@+id/edtUserMetadata"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="28dp"
+        android:background="@android:color/transparent"
+        android:hint="Enter JSONObject of UserMeta "
+        android:text="{'email':'shivam@gmail.com'}"
+        android:inputType="textMultiLine|textCapSentences"
+        android:lines="10"
+        android:maxLines="10"
+        android:minLines="3"
+        android:textSize="16sp"
         app:layout_constraintLeft_toRightOf="@id/guideCenterVertical"
-        app:layout_constraintTop_toBottomOf="@+id/edtPartnerCode" />
+        app:layout_constraintRight_toRightOf="@id/guideRightVertical"
+        app:layout_constraintTop_toBottomOf="@+id/edtUniqueId" />
 
     <Button
-        android:id="@+id/btnInitialize"
+        android:id="@+id/btnLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Initialize"
+        android:text="Login"
         android:layout_marginTop="50dp"
         app:layout_constraintLeft_toLeftOf="@id/guideLeftVertical"
         app:layout_constraintRight_toRightOf="@id/guideRightVertical"
-        app:layout_constraintTop_toBottomOf="@id/txtEnvironmentLabel" />
+        app:layout_constraintTop_toBottomOf="@id/txtUserMetaLabel" />
 
 
     <ProgressBar
