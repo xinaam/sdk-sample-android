@@ -1,5 +1,6 @@
 
 
+
 # Mzaalo Android SDK
 This is the official documentation for the integration of Mzaalo android SDKs in any android application with a valid partner code.
 
@@ -232,6 +233,8 @@ Following are some common playback control functions that you can invoke to hand
 	 This returns the total duration(in milliseconds) of the current video that is loaded on the player.
  - `fun getCurrentPosition():Long`
 	 This returns the current cursor position(in milliseconds) of the video playback.
+ - `fun isPlaying():Boolean`
+	 This return `true` if currently the player is playing and `false` if not.
  - `fun setPlaybackControllerCallback{}`
 	 This allows to set a callback based on the states of the player at different times. This function accepts a lambda function that is passed `PlaybackControllerState` object as an argument to the function. This lambda function is called whenever the state of the player changes. `PlaybackControllerState` is an enum class with the following options representing the corresponding player states:
 	 - `PlaybackControllerState.STATE_BUFFERING`
