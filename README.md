@@ -50,7 +50,7 @@ Add `mzaalo-player` or `mzaalo-rewards` or `mzaalo-auth` to the application leve
 
     dependencies{
 	    ...
-	    implementation 'com.xfinite.mzaalo:mzaalo-xxxx:0.0.6'
+	    implementation 'com.xfinite.mzaalo:mzaalo-xxxx:0.0.7'
 	    ...
     }
 
@@ -236,12 +236,13 @@ Following are some common playback control functions that you can invoke to hand
  - `fun isPlaying():Boolean`
 	 This return `true` if currently the player is playing and `false` if not.
  - `fun setPlaybackControllerCallback{}`
-	 This allows to set a callback based on the states of the player at different times. This function accepts a lambda function that is passed `PlaybackControllerState` object as an argument to the function. This lambda function is called whenever the state of the player changes. `PlaybackControllerState` is an enum class with the following options representing the corresponding player states:
+	 This allows to set a callback based on the states of the player at different times. This function accepts a lambda function that is passed `PlaybackControllerState` object and a `String` error as arguments to the function. This lambda function is called whenever the state of the player changes. `PlaybackControllerState` is an enum class with the following options representing the corresponding player states:
 	 - `PlaybackControllerState.STATE_BUFFERING`
 	 - `PlaybackControllerState.STATE_IDLE`
 	 - `PlaybackControllerState.STATE_ENDED`
 	 - `PlaybackControllerState.STATE_READY`
 	 - `PlaybackControllerState.STATE_PREPARED`
+	 - `PlaybackControllerState.STATE_ERROR`
 	
 	
 #### Cleanup

@@ -1,6 +1,7 @@
 package com.xfinite.mzaalosdksample
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +9,7 @@ import com.xfinite.mzaaloplayer.MzaaloPlayer
 import com.xfinite.mzaaloplayer.MzaaloPlayerContentTypes
 import com.xfinite.mzaaloplayer.core.MZVideoPlayer
 import com.xfinite.mzaaloplayer.core.MZVideoPlayerInitListener
+import com.xfinite.mzaaloplayer.core.PlaybackControllerState
 import kotlinx.android.synthetic.main.activity_video_player.*
 
 class VideoPlayerActivity : AppCompatActivity(), MZVideoPlayerInitListener {
@@ -39,8 +41,9 @@ class VideoPlayerActivity : AppCompatActivity(), MZVideoPlayerInitListener {
 
     fun initialize(view: View) {
         mzaaloPlayer.initialize(contentId.text.toString(), MzaaloPlayerContentTypes.MOVIE,this)
-        mzaaloPlayer.setPlaybackControllerCallback {
-            currentState.text="Last captured state: "+it.name
+        mzaaloPlayer.setPlaybackControllerCallback {state, error ->
+            Log.v("Yo","State - "+state.name)
+            currentState.text="Last captured state: "+state.name
         }
         progressBar.show()
     }
