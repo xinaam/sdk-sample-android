@@ -5,9 +5,12 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.xfinite.mzaaloauth.MzaaloAuth
+import com.xfinite.mzaaloplayer.MzaaloPlayer
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
@@ -52,6 +55,28 @@ class HomeActivity : AppCompatActivity() {
 
         btnPlayer.setOnClickListener{
             startActivity(Intent(this, VideoPlayerActivity::class.java))
+        }
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.global_overflow,menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId){
+            R.id.isInitSuccessful->{
+                Toast.makeText(this,MzaaloPlayer.isInitSuccessful().toString(), Toast.LENGTH_SHORT).show()
+                true
+            }
+
+            R.id.getUser->{
+                Toast.makeText(this, MzaaloAuth.getUser().toString(), Toast.LENGTH_LONG).show()
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
         }
     }
 }
