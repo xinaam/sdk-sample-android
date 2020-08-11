@@ -11,10 +11,13 @@ This is the official documentation for the integration of Mzaalo android SDKs in
 	 - [Requirements](#requirements)
 	 - [Configuration](#configuration)
 - [Getting Started](#getting-started)
+	- [Init](#init)
+	- [IsInitSuccessful](#isInitSuccessful)
 - [Features and Implementation](#features-and-implementation)
 	- [auth](#auth)
 		- [Login](#login)
 		- [Logout](#logout)
+		- [Get User](#get-user)
 	- [rewards](#rewards)
 		- [Register Rewards Action](#register-rewards-action)
 		- [Fetch Reward Balance](#fetch-reward-balance)
@@ -50,7 +53,7 @@ Add `mzaalo-player` or `mzaalo-rewards` or `mzaalo-auth` to the application leve
 
     dependencies{
 	    ...
-	    implementation 'com.xfinite.mzaalo:mzaalo-xxxx:0.0.7'
+	    implementation 'com.xfinite.mzaalo:mzaalo-xxxx:0.0.9'
 	    ...
     }
 
@@ -72,6 +75,8 @@ Add Mzaalo's Maven url repository in `allprojects` block in your project level `
 
 ## Getting Started
 
+### init
+
 The entry point to the SDK is through the `init` function that gets called with a valid partner code, a callback based Mzaalo interface object, and an identifier for the environment type(STAGING or PRODUCTION). Call this function in the `onCreate` function of your Application class.
 
     MzaaloPlayer.init(context, "YOUR_PARTNER_CODE", initListener, MzaaloEnvironment.XXXX)
@@ -89,6 +94,14 @@ Here `initListener` can be either a `MzaaloAuthInitListener` or `MzaaloRewardsIn
 
  - **MzaaloEnvironment.STAGING**
  - **MzaaloEnvironment.PRODUCTION**
+
+### isInitSuccessful
+
+A utility function to check if the Mzaalo SDK is properly initialised or not. This function can be called on either `MzaaloPlayer` or `MzaaloRewards` or `MzaaloAuth` (depending upon the dependency included).
+
+    MzaaloPlayer.isInitSuccessful()
+    
+returns `Boolean` value
 
 
 ## Features and Implementation
@@ -123,6 +136,15 @@ Here `loginListener` is the object of interface `MzaaloAuthLoginListener` that h
 Your application should call `MzaaloAuth.logout()` function when the user logs out from your application or when the user identitiy is no longer available to you.
 
     MzaaloAuth.logout()
+
+#### Get User
+Call this function if you want to fetch the currently logged in user object.
+
+    MzaaloAuth.getUser()
+
+returns  `null` if not-logged in, and `User` object otherwise.
+
+
 
 ### rewards
 #### Register Rewards Action
