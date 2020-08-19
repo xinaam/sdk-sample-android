@@ -20,7 +20,6 @@ class MainActivity : AppCompatActivity(), MzaaloPlayerInitListener {
 
         btnInitialize.setOnClickListener {
             progress.visibility = View.VISIBLE
-            //throw RuntimeException("Test Crash") // Force a crash
 
             //Add to initialize Mzaalo Rewards
             MzaaloPlayer.init(this, edtPartnerCode.text.toString(), this,getSelectedEnvironment())
