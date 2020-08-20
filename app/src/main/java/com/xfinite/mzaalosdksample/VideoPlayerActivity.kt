@@ -1,13 +1,18 @@
 package com.xfinite.mzaalosdksample
 
 import android.os.Bundle
+import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.xfinite.mzaaloauth.MzaaloAuth
 import com.xfinite.mzaaloplayer.MzaaloPlayer
 import com.xfinite.mzaaloplayer.MzaaloPlayerContentTypes
 import com.xfinite.mzaaloplayer.core.MZVideoPlayer
 import com.xfinite.mzaaloplayer.core.MZVideoPlayerInitListener
+import com.xfinite.mzaaloplayer.core.PlaybackControllerState
 import kotlinx.android.synthetic.main.activity_video_player.*
 
 class VideoPlayerActivity : AppCompatActivity(), MZVideoPlayerInitListener {
@@ -39,8 +44,9 @@ class VideoPlayerActivity : AppCompatActivity(), MZVideoPlayerInitListener {
 
     fun initialize(view: View) {
         mzaaloPlayer.initialize(contentId.text.toString(), MzaaloPlayerContentTypes.MOVIE,this)
-        mzaaloPlayer.setPlaybackControllerCallback {
-            currentState.text="Last captured state: "+it.name
+        mzaaloPlayer.setPlaybackControllerCallback {state, error ->
+            Log.v("Yo","State - "+state.name)
+            currentState.text="Last captured state: "+state.name
         }
         progressBar.show()
     }
@@ -68,5 +74,26 @@ class VideoPlayerActivity : AppCompatActivity(), MZVideoPlayerInitListener {
 
     fun getCurrentPosition(view: View) {
         output.text=mzaaloPlayer.getCurrentPosition().toString()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.global_overflow,menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId){
+            R.id.isInitSuccessful->{
+                Toast.makeText(this,MzaaloPlayer.isInitSuccessful().toString(), Toast.LENGTH_SHORT).show()
+                true
+            }
+
+            R.id.getUser->{
+                Toast.makeText(this, MzaaloAuth.getUser().toString(), Toast.LENGTH_LONG).show()
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }
