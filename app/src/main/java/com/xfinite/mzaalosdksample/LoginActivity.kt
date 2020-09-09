@@ -2,18 +2,17 @@ package com.xfinite.mzaalosdksample
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.xfinite.mzaaloauth.MzError
 import com.xfinite.mzaaloauth.MzaaloAuth
 import com.xfinite.mzaaloauth.MzaaloAuthLoginListener
 import com.xfinite.mzaaloauth.User
 import com.xfinite.mzaaloplayer.MzaaloPlayer
 import kotlinx.android.synthetic.main.activity_login.*
-import org.json.JSONException
 import org.json.JSONObject
 
 class LoginActivity : AppCompatActivity(), MzaaloAuthLoginListener {
@@ -38,9 +37,9 @@ class LoginActivity : AppCompatActivity(), MzaaloAuthLoginListener {
         }
     }
 
-    override fun onError(error: String) {
+    override fun onError(error: MzError) {
         progress.visibility = View.GONE
-        Toast.makeText(this,"Login failed : $error",Toast.LENGTH_SHORT).show()
+        Toast.makeText(this,"Login failed : ${error.code}",Toast.LENGTH_SHORT).show()
     }
 
     override fun onLoginSuccess(user: User) {
