@@ -220,6 +220,12 @@ Here `balanceListener` is the object of interface `MzaaloRewardsBalanceListener`
 	    fun onError(error: MzError)
     }
 
+Expected values of `code` field in `MzError` object are:
+
+ - 3008
+ - 3041
+ - 3042
+
 
 ### player
 
