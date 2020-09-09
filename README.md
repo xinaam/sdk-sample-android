@@ -97,6 +97,13 @@ Here `initListener` can be either a `MzaaloAuthInitListener` or `MzaaloRewardsIn
  - **MzaaloEnvironment.STAGING**
  - **MzaaloEnvironment.PRODUCTION**
 
+Expected values of `code` field in `MzError` object are:
+
+ - 3001
+ - 3008
+
+
+
 ### isInitSuccessful
 
 A utility function to check if the Mzaalo SDK is properly initialised or not. This function can be called on either `MzaaloPlayer` or `MzaaloRewards` or `MzaaloAuth` (depending upon the dependency included).
@@ -133,6 +140,15 @@ Here `loginListener` is the object of interface `MzaaloAuthLoginListener` that h
     }
 
 
+Expected values of `code` field in `MzError` object are:
+
+ - 3008
+ - 3011
+ - 3012
+ - 3013
+ - 3014
+ - 3015
+ - 3041
 
 #### Logout
 Your application should call `MzaaloAuth.logout()` function when the user logs out from your application or when the user identitiy is no longer available to you.
@@ -183,6 +199,14 @@ Here `actionListener` is the object of interface `MzaaloRewardsRegisterActionLis
     }
 
 
+Expected values of `code` field in `MzError` object are:
+
+ - 3008
+ - 3021
+ - 3022
+ - 3041
+ - 3042
+
 #### Fetch Reward Balance
 Call this function if you want to fetch the balance of the user that is currently logged in.
 
@@ -229,6 +253,15 @@ Now create the `MZVideoPlayer` object using `MzaaloPlayer` top-level class, pref
 	    fun onReadyToStart()  
 	    fun onError(error: MzError)  
     }
+
+
+Expected values of `code` field in `MzError` object are:
+
+ - 3008
+ - 3031
+ - 3032
+ - 3041
+ - 3042
 
 `MzaaloPlayerContentTypes` is an enum class with the following options:
 
