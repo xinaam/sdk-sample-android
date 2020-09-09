@@ -7,12 +7,12 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.xfinite.mzaaloauth.MzError
 import com.xfinite.mzaaloauth.MzaaloAuth
 import com.xfinite.mzaaloplayer.MzaaloPlayer
 import com.xfinite.mzaaloplayer.MzaaloPlayerContentTypes
 import com.xfinite.mzaaloplayer.core.MZVideoPlayer
 import com.xfinite.mzaaloplayer.core.MZVideoPlayerInitListener
-import com.xfinite.mzaaloplayer.core.PlaybackControllerState
 import kotlinx.android.synthetic.main.activity_video_player.*
 
 class VideoPlayerActivity : AppCompatActivity(), MZVideoPlayerInitListener {
@@ -26,9 +26,9 @@ class VideoPlayerActivity : AppCompatActivity(), MZVideoPlayerInitListener {
         mzaaloPlayer=MzaaloPlayer.createVideoPlayer(this)
     }
 
-    override fun onError(error: String) {
+    override fun onError(error: MzError) {
         progressBar.hide()
-        Toast.makeText(this, "Error on player load $error", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Error on player load ${error.code}", Toast.LENGTH_SHORT).show()
     }
 
     override fun onReadyToStart() {

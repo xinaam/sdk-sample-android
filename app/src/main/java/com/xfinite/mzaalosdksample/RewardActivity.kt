@@ -6,6 +6,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.xfinite.mzaaloauth.MzError
 import com.xfinite.mzaaloauth.MzaaloAuth
 import com.xfinite.mzaaloplayer.MzaaloPlayer
 import com.xfinite.mzaalorewards.MzaaloRewards
@@ -37,9 +38,9 @@ class RewardActivity : AppCompatActivity(){
                                 Toast.makeText(this@RewardActivity, "Registration Success", Toast.LENGTH_SHORT).show()
                             }
 
-                            override fun onError(error: String) {
+                            override fun onError(error: MzError) {
                                 progress.visibility = View.GONE
-                                Toast.makeText(this@RewardActivity, "Registration failed : $error", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this@RewardActivity, "Registration failed : ${error.code}", Toast.LENGTH_SHORT).show()
                             }
                         })
                 } else {
@@ -52,9 +53,9 @@ class RewardActivity : AppCompatActivity(){
                                 Toast.makeText(this@RewardActivity, "Registration Success", Toast.LENGTH_SHORT).show()
                             }
 
-                            override fun onError(error: String) {
+                            override fun onError(error: MzError) {
                                 progress.visibility = View.GONE
-                                Toast.makeText(this@RewardActivity, "Registration failed : $error", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this@RewardActivity, "Registration failed : ${error.code}", Toast.LENGTH_SHORT).show()
                             }
                         })
                 }

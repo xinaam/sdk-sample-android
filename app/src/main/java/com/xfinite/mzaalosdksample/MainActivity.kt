@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.xfinite.mzaaloauth.MzError
 import com.xfinite.mzaaloauth.MzaaloAuth
 import com.xfinite.mzaaloauth.MzaaloEnvironment
 import com.xfinite.mzaaloplayer.MzaaloPlayer
@@ -46,9 +47,9 @@ class MainActivity : AppCompatActivity(), MzaaloPlayerInitListener {
         }
     }
 
-    override fun onError(error: String) {
+    override fun onError(error: MzError) {
         progress.visibility = View.GONE
-        Toast.makeText(this,  error, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this,  "Error - ${error.code}", Toast.LENGTH_SHORT).show()
     }
 
     override fun onSuccess() {
