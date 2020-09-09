@@ -78,9 +78,9 @@ class RewardActivity : AppCompatActivity(){
                     txtRewardBalance.setText("Balance : $balance")
                 }
 
-                override fun onError(error: String) {
+                override fun onError(error: MzError) {
                     progress.visibility = View.GONE
-                    Toast.makeText(this@RewardActivity,"Fetch failed : $error",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@RewardActivity,"Fetch failed : ${error.code}",Toast.LENGTH_SHORT).show()
                 }
             })
         }
