@@ -26,6 +26,8 @@ This is the official documentation for the integration of Mzaalo android SDKs in
 		- [Playback Controls](#playback-controls)
 		- [Cleanup](#cleanup)
 - [Sequence flow](#sequence-flow)
+- [References](#references)
+	- [Error Codes](#error-codes)
 
 ## Overview
 Mzaalo SDKs have three modules:
@@ -53,7 +55,7 @@ Add `mzaalo-player` or `mzaalo-rewards` or `mzaalo-auth` to the application leve
 
     dependencies{
 	    ...
-	    implementation 'com.xfinite.mzaalo:mzaalo-xxxx:0.1.2'
+	    implementation 'com.xfinite.mzaalo:mzaalo-xxxx:2.0.1'
 	    ...
     }
 
@@ -85,7 +87,7 @@ Here `initListener` can be either a `MzaaloAuthInitListener` or `MzaaloRewardsIn
 
     interface MzaaloPlayerInitListener{
 	    fun onSuccess()
-	    fun onError(error:String)
+	    fun onError(error:MzError)
     }
 
 
@@ -127,7 +129,7 @@ Here `loginListener` is the object of interface `MzaaloAuthLoginListener` that h
 
     interface MzaaloAuthLoginListener{
 	    fun onLoginSuccess(user:User)
-	    fun onError(error:String)
+	    fun onError(error:MzError)
     }
 
 
@@ -177,7 +179,7 @@ Here `actionListener` is the object of interface `MzaaloRewardsRegisterActionLis
 
     interface MzaaloRewardsRegisterActionListener{
 	    fun onActionRegistered()
-	    fun onError(error: String)
+	    fun onError(error: MzError)
     }
 
 
@@ -191,7 +193,7 @@ Here `balanceListener` is the object of interface `MzaaloRewardsBalanceListener`
 
     interface MzaaloRewardsBalanceListener{
 	    fun onBalanceFetched(balance: Int?)
-	    fun onError(error: String)
+	    fun onError(error: MzError)
     }
 
 
@@ -225,7 +227,7 @@ Now create the `MZVideoPlayer` object using `MzaaloPlayer` top-level class, pref
 
     interface MZVideoPlayerInitListener {  
 	    fun onReadyToStart()  
-	    fun onError(error:String)  
+	    fun onError(error: MzError)  
     }
 
 `MzaaloPlayerContentTypes` is an enum class with the following options:
@@ -286,3 +288,31 @@ Finally in your Activity/Fragment's onStop method, call the `clean` function of 
 ![Register Rewards action function of the rewards module of the Mzaalo SDK](https://xfinitesite.blob.core.windows.net/flow-diagrams/mzaalo-rewards-rra.png)
 
 ![Fetch rewards balance function of the rewards module of Mzaalo SDK](https://xfinitesite.blob.core.windows.net/flow-diagrams/mzaalo-rewards-frb.png)
+
+
+
+## References
+
+### Error Codes
+
+The `MzError` object returned in each of the error callbacks has the following fields:
+
+ - `code`: Int
+ - `message`:String
+
+The value of  `code` is able to distinguish between the type of the error that is received. Following table illustrates this:
+| code | Description |
+|--|--|
+| 3001 | Invalid or missing partner code |
+| 3011 | Invalid phone |
+| 3012 | Invalid or missing user ID |
+| 3013 | Invalid or missing country code |
+| 3014 | Validation Error with the user meta data |
+| 3015 | Invalid or missing email |
+| 3021 | Invalid reward action type |
+| 3022 | Invalid action meta data |
+| 3031 | Invalid or empty content ID |
+| 3032 | Could not found streaming playable URL |
+| 3041 | Initialization required. This happens when initialization was not completed successfully |
+| 3042 | Login required. This happens when login was not completed successfully |
+| 3008 | Unclassified general server error |
