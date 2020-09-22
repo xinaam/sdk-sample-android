@@ -47,5 +47,5 @@ dependencies {
 
     // Add Implementation of mzaalo-player
 
-    implementation 'com.xfinite.mzaalo:mzaalo-player:2.0.2'
+    implementation 'com.xfinite.mzaalo:mzaalo-player:2.0.3'
 }
