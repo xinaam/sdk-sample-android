@@ -55,7 +55,8 @@ Add `mzaalo-player` or `mzaalo-rewards` or `mzaalo-auth` to the application leve
 
     dependencies{
 	    ...
-	    implementation 'com.xfinite.mzaalo:mzaalo-xxxx:2.0.2'
+
+	    implementation 'com.xfinite.mzaalo:mzaalo-xxxx:2.0.3'
 	    ...
     }
 
