@@ -92,7 +92,7 @@
         android:layout_marginTop="28dp"
         android:background="@android:color/transparent"
         android:hint="Enter JSONObject of UserMeta "
-        android:text="{'email':'shivam@gmail.com'}"
+        android:text="{'email':'user@example.com'}"
         android:inputType="textMultiLine|textCapSentences"
         android:lines="10"
         android:maxLines="10"
