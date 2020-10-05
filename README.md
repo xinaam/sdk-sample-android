@@ -355,4 +355,5 @@ The value of  `code` is able to distinguish between the type of the error that i
 | 3032 | Could not found streaming playable URL |
 | 3041 | Initialization required. This happens when initialization was not completed successfully |
 | 3042 | Login required. This happens when login was not completed successfully |
+| 3091 | Invalid response from server |
 | 3008 | Unclassified general server error |
