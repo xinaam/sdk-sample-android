@@ -56,7 +56,7 @@ Add `mzaalo-player` or `mzaalo-rewards` or `mzaalo-auth` to the application leve
     dependencies{
 	    ...
 
-	    implementation 'com.xfinite.mzaalo:mzaalo-xxxx:2.0.6'
+	    implementation 'com.xfinite.mzaalo:mzaalo-xxxx:2.0.7'
 	    ...
     }
 
@@ -149,6 +149,7 @@ Expected values of `code` field in `MzError` object are:
  - 3013
  - 3014
  - 3015
+ - 3016
  - 3041
 
 #### Logout
@@ -349,6 +350,7 @@ The value of  `code` is able to distinguish between the type of the error that i
 | 3013 | Invalid or missing country code |
 | 3014 | Validation Error with the user meta data |
 | 3015 | Invalid or missing email |
+| 3016 | User ID and user meta mismatch |
 | 3021 | Invalid reward action type |
 | 3022 | Invalid action meta data |
 | 3031 | Invalid or empty content ID |
