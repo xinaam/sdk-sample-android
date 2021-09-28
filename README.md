@@ -56,24 +56,11 @@ Add `mzaalo-player` or `mzaalo-rewards` or `mzaalo-auth` to the application leve
     dependencies{
 	    ...
 
-	    implementation 'com.xfinite.mzaalo:mzaalo-xxxx:2.0.7'
+	    implementation 'com.mzaalo:mzaalo-xxxx:2.0.8'
 	    ...
     }
 
 where, **`xxxx`** can be `auth` or `rewards` or `player`
-
-Add Mzaalo's Maven url repository in `allprojects` block in your project level `build.gradle` file:
-
-    allprojects {
-    ...
-      repositories {
-      ...
-        maven {
-          url "https://dl.bintray.com/xfiniteio/MzaaloSDKs"
-        }
-      }
-    }
-
 
 
 ## Getting Started
