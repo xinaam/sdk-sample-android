@@ -22,11 +22,6 @@ allprojects {
     repositories {
         google()
         jcenter()
-
-        //Add Mzaalo's Maven url
-        maven {
-            url "https://dl.bintray.com/xfiniteio/MzaaloSDKs"
-        }
     }
 }
 

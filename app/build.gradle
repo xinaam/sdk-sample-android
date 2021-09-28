@@ -46,6 +46,5 @@ dependencies {
     implementation 'com.google.firebase:firebase-crashlytics:17.2.1'
 
     // Add Implementation of mzaalo-player
-
-    implementation 'com.xfinite.mzaalo:mzaalo-player:2.0.7'
+    implementation 'com.mzaalo:mzaalo-player:2.0.8'
 }
